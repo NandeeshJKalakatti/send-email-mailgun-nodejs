@@ -5,20 +5,20 @@ import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
 
 function App() {
-  const [email, setEmail] = useState('');
+  // const [email, setEmail] = useState('');
   const [subject, setSubject] = useState('');
   const [message, setMessage] = useState('');
   const [loading, setLoading] = useState(false);
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    if (!email || !subject || !message) {
+    if ( !subject || !message) {
       return toast.error('Please fill email, subject and message');
     }
     try {
       setLoading(true);
       const { data } = await axios.post(`/api/email`, {
-        email,
+       
         subject,
         message,
       });
@@ -39,13 +39,13 @@ function App() {
       <header className="App-header">
         <form onSubmit={submitHandler}>
           <h1>Send Email</h1>
-          <div>
+          {/* <div>
             <label htmlFor="email">Email</label>
             <input
               onChange={(e) => setEmail(e.target.value)}
               type="email"
             ></input>
-          </div>
+          </div> */}
           <div>
             <label htmlFor="subject">Subject</label>
             <input
@@ -60,7 +60,16 @@ function App() {
               id="message"
               onChange={(e) => setMessage(e.target.value)}
             ></textarea>
+             
+            
           </div>
+          {/* <div>
+          <label htmlFor="message">Email Adrees</label>
+            <input
+              id="message"
+              onChange={(e) => setMessage(e.target.value)}
+            ></input>
+          </div> */}
           <div>
             <label></label>
             <button disabled={loading} type="submit">
